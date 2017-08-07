@@ -7,6 +7,7 @@ public:
     n = 0;
     min = L;
     max = 0;
+    x[3] = {0, 0, 0};
   };
   int CalcMin(){
     for(int i = 0; i < n; i++){
@@ -25,6 +26,7 @@ private:
   int n;
   int min;
   int max;
+  int x;
 };
 
 int main(){
