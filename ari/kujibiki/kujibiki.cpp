@@ -12,7 +12,7 @@ public:
   Kujibiki(){
     n = 0;
     m = 0;
-    k = {};
+    kuji = {};
     drawCount = 4;
   }
   void SetN(const int num){
@@ -28,12 +28,42 @@ public:
     return m;
   }
   void SetK(const std::vector<int> x){
-    k = x;
+    kuji = x;
   }
-  void Draw(){
-    while(drawCount > 0){
-      drawCount --;
+  bool Draw(){
+    bool ans = false;
+    int total = 0;
+    
+    for(int i = 0; i < 4; i++){
+      total = kuji[i];
+      if(m == total){
+        ans = true;
+        break;
+      }
+      for(int j = 0; j < 4; j++){
+        total += kuji[j];
+        if(m == total){
+          ans = true;
+          break;
+        }
+        for(int k = 0; k < 4; k++){
+          total += kuji[k];
+          if(m == total){
+            ans = true;
+            break;
+          }
+          for(int l = 0; l < 4; l++){
+            total += kuji[l];
+            if(m == total){
+              ans = true;
+              break;
+            }
+          }
+        }
+      }
     }
+
+    return ans;
   }
   int GetDrawCount(){
     return drawCount;
@@ -44,7 +74,7 @@ private:
   int n;
   int m;
   int drawCount;
-  std::vector<int> k;
+  std::vector<int> kuji;
 };
 
 int main(){
@@ -58,7 +88,7 @@ int main(){
   kujibiki->SetK(k);
 
   std::cout << "ans is " << kujibiki->GetM() << std::endl;
-  std::cout << "count is " << kujibiki->GetDrawCount() << std::endl;
+  std::cout << "count is " << kujibiki->Draw() << std::endl;
 
   delete kujibiki;
   return 0;
