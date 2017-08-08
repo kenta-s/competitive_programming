@@ -1,17 +1,22 @@
 # include <iostream>
+# include <list>
+# include <vector>
 
 class Ants {
 public:
-  Ants(){
+  Ants(int L, int n, std::vector<int> x){
     L = 0;
     n = 0;
     min = L;
     max = 0;
-    x[3] = {0, 0, 0};
+    x = {};
   };
+  ~Ants(){
+  }
   int CalcMin(){
     for(int i = 0; i < n; i++){
-      min = std::min(min, x[i]);
+      int tmpMin = std::min(x[i], L - x[i]);
+      min = std::max(tmpMin, min);
     }
     return min;
   }
@@ -26,28 +31,21 @@ private:
   int n;
   int min;
   int max;
-  int x;
+  std::vector<int> x;
 };
 
 int main(){
+  using namespace std;
   int L = 10;
   int n = 3;
-  int x[3] = {2, 6, 7};
+  vector<int> x{2, 6, 7};
 
-  int min = L;
-  for(int i = 0; i < n; i ++){
-    min = std::min(L - x[i], min);
-  }
-  std::cout << "min is " << min << std::endl;
+  Ants *ants = new Ants(L, n, x);
+  cout << ants->CalcMax() << endl;
 
-  int max = 0;
-  for(int i = 0; i < n; i ++){
-    max = std::max(L - x[i], max);
-  }
-  std::cout << "max is " << max << std::endl;
+  delete ants;
 
-  Ants *ants = new Ants();
-  std::cout << ants->CalcMin() << std::endl;
+  cout << x[1] << endl;
 
   return 0;
 }
