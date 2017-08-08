@@ -13,6 +13,7 @@ public:
     n = 0;
     m = 0;
     k = {};
+    drawCount = 4;
   }
   void SetN(const int num){
     n = num;
@@ -29,11 +30,15 @@ public:
   void SetK(const std::vector<int> x){
     k = x;
   }
+  void Draw(){
+
+  }
   ~Kujibiki(){
   }
 private:
   int n;
   int m;
+  int drawCount;
   std::vector<int> k;
 };
 
