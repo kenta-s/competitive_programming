@@ -31,7 +31,12 @@ public:
     k = x;
   }
   void Draw(){
-
+    while(drawCount > 0){
+      drawCount --;
+    }
+  }
+  int GetDrawCount(){
+    return drawCount;
   }
   ~Kujibiki(){
   }
@@ -53,6 +58,7 @@ int main(){
   kujibiki->SetK(k);
 
   std::cout << "ans is " << kujibiki->GetM() << std::endl;
+  std::cout << "count is " << kujibiki->GetDrawCount() << std::endl;
 
   delete kujibiki;
   return 0;
