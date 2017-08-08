@@ -31,7 +31,7 @@ public:
   }
   int CalcMax(){
     for(int i = 0; i < n; i++){
-      max = std::max(max, x[i]);
+      max = std::max(max, std::max(x[i], L - x[i]));
     }
     return max;
   }
