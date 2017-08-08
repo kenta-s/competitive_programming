@@ -1,4 +1,5 @@
 # include <iostream>
+# include <vector>
 
 // conditions
 //
@@ -6,11 +7,48 @@
 // 1 <= m <= 10**8
 // 1 <= k <= 10**8
 
+class Kujibiki {
+public:
+  Kujibiki(){
+    n = 0;
+    m = 0;
+    k = {};
+  }
+  void SetN(const int num){
+    n = num;
+  }
+  int GetN(){
+    return n;
+  }
+  void SetM(const int num){
+    m = num;
+  }
+  int GetM(){
+    return m;
+  }
+  void SetK(const std::vector<int> x){
+    k = x;
+  }
+  ~Kujibiki(){
+  }
+private:
+  int n;
+  int m;
+  std::vector<int> k;
+};
+
 int main(){
   int n = 3;
   int m = 10;
-  int k[] = {1, 3, 5};
+  std::vector<int> k{1, 3, 5};
 
-  std::cout << "ans is " << k[1] << std::endl;
+  Kujibiki *kujibiki = new Kujibiki;
+  kujibiki->SetN(n);
+  kujibiki->SetM(m);
+  kujibiki->SetK(k);
+
+  std::cout << "ans is " << kujibiki->GetM() << std::endl;
+
+  delete kujibiki;
   return 0;
 }
