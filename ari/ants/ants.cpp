@@ -4,7 +4,7 @@
 
 class Ants {
 public:
-  Ants(int L, int n, std::vector<int> x){
+  Ants(){
     L = 0;
     n = 0;
     min = L;
@@ -12,6 +12,15 @@ public:
     x = {};
   };
   ~Ants(){
+  }
+  void SetN(int num){
+    n = num;
+  }
+  void SetL(int num){
+    L = num;
+  }
+  void SetX(std::vector<int> amount){
+    x = amount;
   }
   int CalcMin(){
     for(int i = 0; i < n; i++){
@@ -40,12 +49,15 @@ int main(){
   int n = 3;
   vector<int> x{2, 6, 7};
 
-  Ants *ants = new Ants(L, n, x);
-  cout << ants->CalcMax() << endl;
+  Ants *ants = new Ants;
+
+  ants->SetL(L);
+  ants->SetN(n);
+  ants->SetX(x);
+  cout << "min is " << ants->CalcMin() << endl;
+  cout << "max is " << ants->CalcMax() << endl;
 
   delete ants;
-
-  cout << x[1] << endl;
 
   return 0;
 }
