@@ -32,31 +32,13 @@ public:
   }
   bool Draw(){
     bool ans = false;
-    int total = 0;
     
-    for(int i = 0; i < 4; i++){
-      total = kuji[i];
-      if(m == total){
-        ans = true;
-        break;
-      }
-      for(int j = 0; j < 4; j++){
-        total += kuji[j];
-        if(m == total){
-          ans = true;
-          break;
-        }
-        for(int k = 0; k < 4; k++){
-          total += kuji[k];
-          if(m == total){
-            ans = true;
-            break;
-          }
-          for(int l = 0; l < 4; l++){
-            total += kuji[l];
-            if(m == total){
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < n; j++){
+        for(int k = 0; k < n; k++){
+          for(int l = 0; l < n; l++){
+            if(m == (kuji[i] + kuji[j] + kuji[k] + kuji[l])){
               ans = true;
-              break;
             }
           }
         }
