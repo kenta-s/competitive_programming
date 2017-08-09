@@ -13,42 +13,36 @@ public:
     n = 0;
     m = 0;
     kuji = {};
-    drawCount = 4;
   }
   void SetN(const int num){
     n = num;
   }
-  int GetN(){
-    return n;
-  }
   void SetM(const int num){
     m = num;
-  }
-  int GetM(){
-    return m;
   }
   void SetK(const std::vector<int> x){
     kuji = x;
   }
   bool Draw(){
     bool ans = false;
+    std::sort(kuji.begin(), kuji.end());
+
+    std::vector<int> tmp;
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < n; j++){
+        tmp.push_back(kuji[i] + kuji[j]);
+      }
+    }
     
     for(int i = 0; i < n; i++){
       for(int j = 0; j < n; j++){
-        for(int k = 0; k < n; k++){
-          for(int l = 0; l < n; l++){
-            if(m == (kuji[i] + kuji[j] + kuji[k] + kuji[l])){
-              ans = true;
-            }
-          }
+        if(std::binary_search(tmp.begin(), tmp.end(), (m - kuji[i] - kuji[j]))){
+          ans = true;
         }
       }
     }
 
     return ans;
-  }
-  int GetDrawCount(){
-    return drawCount;
   }
   ~Kujibiki(){
   }
@@ -69,8 +63,7 @@ int main(){
   kujibiki->SetM(m);
   kujibiki->SetK(k);
 
-  std::cout << "ans is " << kujibiki->GetM() << std::endl;
-  std::cout << "count is " << kujibiki->Draw() << std::endl;
+  std::cout << "ans is " << kujibiki->Draw() << std::endl;
 
   delete kujibiki;
   return 0;
