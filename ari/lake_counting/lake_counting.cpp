@@ -19,10 +19,10 @@ char field[10][13] = {
 };
 
 void dfs(int x, int y){
-  field[x][y] = ".";
+  field[x][y] = '.';
   for(int dx = -1; dx <= 1; dx++){
     for(int dy = -1; dy <= 1; dy++){
-      if(std::strcmp(field[dx][dy], "W")) dfs(dx, dy);
+      if(field[dx][dy] == 'W') dfs(dx, dy);
     }
   }
 }
@@ -31,11 +31,13 @@ int main(){
   int count = 0;
   for(int i = 0; i < N; i++){
     for(int j = 0; j < M; j++){
-      if(std::strcmp(field[i][j], "W")){
+      if(field[i][j] == 'W'){
         dfs(i, j);
         count++;
       }
     }
   }
+
+  std::cout << count << std::endl;
   return 0;
 }
