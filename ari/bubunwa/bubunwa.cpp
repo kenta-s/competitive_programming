@@ -5,46 +5,20 @@
 // -10**8 <= a <= 10**8
 // -10**8 <= k <= 10**8
 
+int n = 4;
+std::vector<int> a{1 ,2 ,4, 7};
+int k = 13;
+
+bool dfs(int i, int sum){
+  if(i >= n) return k == sum;
+
+  if(dfs(i+1, sum+a[i])) return true;
+  if(dfs(i+1, sum)) return true;
+
+  return false;
+}
+
 int main(){
-
-  int n = 4;
-  std::vector<int> a{1 ,2 ,4, 7};
-  int k = 13;
-  
-  bool ans = false;
-  std::string hoge;
-  for(int i = 0; i < n; i++){
-    if(a[i] == k){
-      ans = true;
-      hoge = a[i];
-      break;
-    }else{
-      for(int j = 0; j < n; j++){
-        if(a[i] + a[j] == k){
-          ans = true;
-          hoge = std::to_string(a[i]) + " + " + std::to_string(a[j]);
-          break;
-        }else{
-          for(int l = 0; l < n; l++){
-            if(a[i] + a[j] + a[l] == k){
-              ans = true;
-              hoge = std::to_string(a[i]) + " + " +  std::to_string(a[j]) + " + " +  std::to_string(a[l]);
-              break;
-            }else{
-              for(int m = 0; m < n; m++){
-                if(a[i] + a[j] + a[l] + a[m] == k) {
-                  ans = true;
-                  hoge = std::to_string(a[i]) + " + " +  std::to_string(a[j]) + " + " +  std::to_string(a[l]) + " + " +  std::to_string(a[m]);
-                  break;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  std::cout << k << " = " << hoge << std::endl;
+  std::cout << "ans is " << dfs(0, 0) << std::endl;
   return 0;
 }
