@@ -22,7 +22,7 @@ void dfs(int x, int y){
   field[x][y] = '.';
   for(int dx = -1; dx <= 1; dx++){
     for(int dy = -1; dy <= 1; dy++){
-      if(field[dx][dy] == 'W') dfs(dx, dy);
+      if(field[x + dx][y + dy] == 'W') dfs(x + dx, y + dy);
     }
   }
 }
