@@ -17,26 +17,25 @@ char field[10][13] = {
   "....W.......",
   "............",
 };
-char fuga[3][2] = {
-  "2",
-  "2",
-  "2"
-};
 
-int dfs(int x, int y){
-  std::cout << x << std::endl;
-  if(x >= 10) return x;
-
-  return 0;
+void dfs(int x, int y){
+  field[x][y] = ".";
+  for(int dx = -1; dx <= 1; dx++){
+    for(int dy = -1; dy <= 1; dy++){
+      if(field[dx][dy] == "W") dfs(dx, dy);
+    }
+  }
 }
 
 int main(){
-  char hoge[] = {"1234567890123"};
-  std::cout << field << std::endl;
-  std::cout << hoge << std::endl;
-
+  int count = 0;
   for(int i = 0; i < N; i++){
-    std::cout << field[i] << std::endl;
+    for(int j = 0; j < M; j++){
+      if(field[i][j] == "W"){
+        dfs(i, j);
+        count++;
+      }
+    }
   }
   return 0;
 }
