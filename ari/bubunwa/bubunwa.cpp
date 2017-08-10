@@ -12,24 +12,29 @@ int main(){
   int k = 13;
   
   bool ans = false;
+  std::string hoge;
   for(int i = 0; i < n; i++){
     if(a[i] == k){
       ans = true;
+      hoge = a[i];
       break;
     }else{
       for(int j = 0; j < n; j++){
         if(a[i] + a[j] == k){
           ans = true;
+          hoge = std::to_string(a[i]) + " + " + std::to_string(a[j]);
           break;
         }else{
           for(int l = 0; l < n; l++){
             if(a[i] + a[j] + a[l] == k){
               ans = true;
+              hoge = std::to_string(a[i]) + " + " +  std::to_string(a[j]) + " + " +  std::to_string(a[l]);
               break;
             }else{
               for(int m = 0; m < n; m++){
                 if(a[i] + a[j] + a[l] + a[m] == k) {
                   ans = true;
+                  hoge = std::to_string(a[i]) + " + " +  std::to_string(a[j]) + " + " +  std::to_string(a[l]) + " + " +  std::to_string(a[m]);
                   break;
                 }
               }
@@ -40,6 +45,6 @@ int main(){
     }
   }
 
-  std::cout << "ans is " << ans << std::endl;
+  std::cout << k << " = " << hoge << std::endl;
   return 0;
 }
