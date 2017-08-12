@@ -26,18 +26,16 @@ int dy[4] = {1, 0, -1, 0};
 int distance[10][11];
 
 void move(int x, int y){
-  if(maze[x][y] == 'G'){
-    std::cout << "yessssssss!!!!!!!!!" << std::endl;
-  }else{
-    distance[x][y] = 1;
-    for(int i = 0; i < 4; i++){
-      if(maze[x+dx[i]][y+dy[i]] == '.'){
-        if(distance[x+dx[i]][y+dy[i]] == 1){
-        }else{
-          std::cout << "x is " << x+dx[i] << std::endl;
-          std::cout << "y is " << y+dy[i] << std::endl;
-          move((x+dx[i]), (y+dy[i]));
-        }
+  distance[x][y] = 1;
+  for(int i = 0; i < 4; i++){
+    if(maze[x+dx[i]][y+dy[i]] == 'G'){
+      std::cout << "yessssssss!!!!!!!!!" << std::endl;
+    }else if(maze[x+dx[i]][y+dy[i]] == '.'){
+      if(distance[x+dx[i]][y+dy[i]] == 1){
+      }else{
+        std::cout << "x is " << x+dx[i] << std::endl;
+        std::cout << "y is " << y+dy[i] << std::endl;
+        move((x+dx[i]), (y+dy[i]));
       }
     }
   }
