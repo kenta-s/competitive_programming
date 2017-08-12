@@ -27,6 +27,11 @@ int distance[10][11];
 
 void move(int x, int y, int prevCount){
   distance[x][y] = prevCount + 1;
+  if(distance[x][y]){
+    if(distance[x][y] > prevCount+1){
+      distance[x][y] = prevCount+1;
+    }
+  }
   for(int i = 0; i < 4; i++){
     if(maze[x+dx[i]][y+dy[i]] == 'G'){
       std::cout << "count is " << prevCount+1 << std::endl;
