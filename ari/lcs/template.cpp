@@ -7,7 +7,7 @@ char s[] = "abcd";
 char t[] = "becd";
 
 // expected
-// 4
+// 3
 
 // int n = 7;
 // int m = 6;
@@ -15,4 +15,4 @@ char t[] = "becd";
 // char t[] = "BDCABA";
 
 // expected
-// 3
+// 4
