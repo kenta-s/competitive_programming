@@ -16,7 +16,7 @@ bool hoge(int i, int j, int direction1, int direction2){
 }
 
 bool checkWholeBoard(){
-  bool eachRow[8];
+  bool eachRow[8] = {false, false,false,false,false,false,false,false};
   for(int i = 0; i < 8; i++){
     for(int j = 0; j < 8; j++){
       if(board[i][j] == 'Q'){
@@ -33,7 +33,7 @@ bool checkWholeBoard(){
 }
 
 bool check(int i, int j){
-  return(hoge(i,j,-1,-1) && hoge(i,j,-1,0) && hoge(i,j,-1,1) && hoge(i,j,0,1) && hoge(i,j,1,-1) && hoge(i,j,1,0) && hoge(i,j,1,1));
+  return(hoge(i,j,-1,-1) && hoge(i,j,-1,0) && hoge(i,j,-1,1) && hoge(i,j,0,-1) && hoge(i,j,0,1) && hoge(i,j,1,-1) && hoge(i,j,1,0) && hoge(i,j,1,1));
 }
 
 void resetRow(int i){
@@ -44,22 +44,32 @@ void resetRow(int i){
 
 bool done[8][8];
 bool dfs(int i, int j){
+  if(i > 8){
+    return false;
+  }
   done[i][j] = true;
+  // if(i == 1 && j == 3){
+  //   cout << "hoge" << endl;
+  //   cout << check(i, j) << endl;
+  // }
+  cout << i << endl;
   if(check(i,j)){
+    cout << i << j << endl;
     board[i][j] = 'Q';
-    // board[1][3] = '.';
-    if(checkWholeBoard()){
-      cout << "yes" << endl;
-      return true;
-    }else{
-      for(int k=0;k<8;k++){
-        if(!done[i+1][k]){
-          if(dfs(i+1,k)){
-            break;
-          };
+  }
+  if(checkWholeBoard()){
+    cout << "yes" << endl;
+    return true;
+  }else{
+    for(int k=0;k<8;k++){
+      if(!done[i+1][k]){
+        if(dfs(i+1,k)){
+          cout << i << j << endl;
+        }else{
+          board[i][j] = '.';
         }
-      };
-    }
+      }
+    };
   }
 }
 
@@ -91,13 +101,14 @@ int main(){
 
   resetBoard();
 
-  for(int i=0;i<8;i++){
-    for(int j=0;j<8;j++){
-      if(check(i,j)){
-        dfs(i,j);
-      }
-    }
-  }
+  // for(int i=0;i<8;i++){
+  //  for(int j=0;j<8;j++){
+  //    if(check(0,j)){
+  //      dfs(0,j);
+  //    }
+  //  }
+  // }
+  dfs(0,0);
 
   if(checkWholeBoard()){
     cout << "OK" << endl;
