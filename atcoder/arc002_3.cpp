@@ -2,15 +2,34 @@
 
 using namespace std;
 
+
+struct Command{
+  int total = 0;
+};
+
 int main(){
   int N;
   cin >> N;
   char commands[N];
-  char L[2];
-  char R[2];
+
+  Command AA;
+  Command AB;
+  Command AX;
+  Command AY;
+  Command BA;
+  Command BB;
+  Command BX;
+  Command BY;
+  Command XA;
+  Command XB;
+  Command XX;
+  Command XY;
+  Command YA;
+  Command YB;
+  Command YX;
+  Command YY;
+
   cin >> commands;
   cout << commands << endl;
-  L[0] = commands[0];
-  L[1] = commands[1];
   return 0;
 }
