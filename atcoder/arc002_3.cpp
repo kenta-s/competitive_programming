@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -100,32 +101,34 @@ Command maxC2(){
 }
 
 int totalCount = 0;
-void replaceWithShortcut(char commands[], int N){
-  char newCommands[N];
+string replaceWithShortcut(string commands, int N){
   Command m = maxC2();
   totalCount += m.total;
   for(int i = 1; i<N; i++){
     if(commands[i-1] == *m.firstC && commands[i] == *m.secondC){
-    }else{
-      newCommands[i-1] = commands[i-1];
-      newCommands[i] = commands[i];
+      commands.erase(i-1, 2);
+      i = i -2;
     }
   }
-  cout << newCommands << endl;
+  return commands;
 }
 
 int main(){
   int N;
   cin >> N;
-  char commands[N];
+  string commands;
 
   cin >> commands;
 
   for(int i = 1; i<N; i++){
     countup(commands[i-1], commands[i], i);
   }
-  replaceWithShortcut(commands, N);
-  cout << totalCount << endl;
+  commands = replaceWithShortcut(commands, N);
+  commands = replaceWithShortcut(commands, N);
+  // cout << totalCount << endl;
+
+  cout << commands << endl;
+
   // cout << m.name << m.total << endl;
 
   // cout << XX.total << endl;
