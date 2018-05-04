@@ -141,7 +141,6 @@ int main(){
   int N;
   cin >> N;
   string commands;
-
   cin >> commands;
 
   for(int i = 1; i<N; i++){
@@ -149,16 +148,11 @@ int main(){
   }
   commands = replaceWithShortcut(commands, N);
   resetEachTotal();
+  for(int i = 1; i<(N-(totalCount * 2)); i++){
+    countup(commands[i-1], commands[i], i);
+  }
   commands = replaceWithShortcut(commands, N);
-  // cout << totalCount << endl;
-
-  cout << commands << endl;
-
-  // cout << m.name << m.total << endl;
-
-  // cout << XX.total << endl;
-  // cout << BB.total << endl;
-
-  // cout << commands << endl;
+  totalCount =  totalCount + (N - (totalCount * 2));
+  cout << totalCount << endl;
   return 0;
 }
