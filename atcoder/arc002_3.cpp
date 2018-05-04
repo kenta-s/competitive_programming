@@ -28,6 +28,30 @@ Command YB = { 'Y', 'B', 0, 0 };
 Command YX = { 'Y', 'X', 0, 0 };
 Command YY = { 'Y', 'Y', 0, 0 };
 
+void resetCount(Command* c){
+  c->lastIndex = 0;
+  c->total = 0;
+}
+
+void resetEachTotal(){
+  resetCount(&AA);
+  resetCount(&AB);
+  resetCount(&AX);
+  resetCount(&AY);
+  resetCount(&BA);
+  resetCount(&BB);
+  resetCount(&BX);
+  resetCount(&BY);
+  resetCount(&XA);
+  resetCount(&XB);
+  resetCount(&XX);
+  resetCount(&XY);
+  resetCount(&YA);
+  resetCount(&YB);
+  resetCount(&YX);
+  resetCount(&YY);
+}
+
 void coutup2(Command* c, int lastIndex){
   if(lastIndex == 1 || c->lastIndex != (lastIndex - 1)){
     c->lastIndex = lastIndex;
@@ -124,6 +148,7 @@ int main(){
     countup(commands[i-1], commands[i], i);
   }
   commands = replaceWithShortcut(commands, N);
+  resetEachTotal();
   commands = replaceWithShortcut(commands, N);
   // cout << totalCount << endl;
 
