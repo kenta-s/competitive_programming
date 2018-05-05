@@ -8,5 +8,7 @@ int main(){
   string commands;
   cin >> commands;
 
+  cout << commands << endl;
+
   return 0;
 }
