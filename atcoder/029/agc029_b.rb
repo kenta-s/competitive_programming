@@ -16,11 +16,11 @@ twos.reverse!
 
 balls.each do |ball|
   next if h[ball] < 1
+  h[ball] -= 1
   twos.each do |t|
     break if t < ball
-    if (t - ball != ball) && h[t - ball] > 0
+    if h[t - ball] > 0
       h[t - ball] -= 1
-      h[ball] -= 1
       count += 1
       next
     end
