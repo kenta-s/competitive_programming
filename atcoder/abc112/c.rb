@@ -15,10 +15,10 @@ if !ans.empty?
   exit
 end
 
+first_input = inputs.select{|i| i[2] > 0}.first
 (0..100).each do |x|
   (0..100).each do |y|
-    t = inputs.first
-    h = (t[2] + (t[0] - x).abs + (t[1] - y).abs)
+    h = (first_input[2] + (first_input[0] - x).abs + (first_input[1] - y).abs)
     if inputs.all?{|t| t[2] == [(h - (t[0] - x).abs - (t[1] - y).abs),0].max }
       puts "#{x} #{y} #{h}"
       exit
