@@ -1,31 +1,39 @@
-_n = gets.to_i
+n = gets.to_i
 as = gets.chomp.split(" ").map(&:to_i)
 
-even = Hash.new(0)
-odd = Hash.new(0)
+even_h = Hash.new(0)
+odd_h = Hash.new(0)
+
 as.each.with_index do |a, i|
   if i % 2 == 0
-    even[a] += 1
+    even_h[a] += 1
   else
-    odd[a] += 1
+    odd_h[a] += 1
   end
 end
 
-even_values = even.values.sort.reverse
-odd_values = odd.values.sort.reverse
-# even_max = even.key(even_values.first)
-# odd_max = odd.key(odd_values.first)
-even_max = even.key(even_values.first)
-odd_max = odd.key(odd_values.first)
+even = even_h.to_a.sort{|a,b| a[1] <=> b[1]}.reverse
+odd = odd_h.to_a.sort{|a,b| a[1] <=> b[1]}.reverse
 
-count = 0
-if even_max == odd_max
-  count += odd_values[1, odd_values.length].reduce(0) {|a,e| a+=e}
-  count += even_values[1, even_values.length].reduce(0) {|a,e| a+=e}
-  count += even_values.first
-else
-  count += odd_values[1, odd_values.length].reduce(0) {|a,e| a+=e}
-  count += even_values[1, even_values.length].reduce(0) {|a,e| a+=e}
+e = []
+o = []
+(n/2).times do |i|
+  e = even[i]
+  o = odd[i]
+  if e.nil? || o.nil?
+    e = [0,0]
+    o = odd[0]
+  end
+  break if e[0] != o[0]
+  if e[1] == o[1]
+    next
+  elsif e[1] < o[1]
+    e = even[i]
+    break
+  else
+    o = odd[i]
+    break
+  end
 end
 
-puts count
+puts n - e[1] - o[1]
