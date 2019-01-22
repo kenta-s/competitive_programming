@@ -1,26 +1,27 @@
 n = gets.to_i
 hs = gets.split(" ").map(&:to_i)
-count = 0
 
-array = Array.new([])
-i = 0
-hs.each do |h|
-  if h == 0
-    i += 1
-  else
-    array[i] ||= []
-    array[i] << h
+$count = 0
+
+def foo(array)
+  return if array.empty? || array.all?{|a| a == 0}
+  tmp_array = Array.new([])
+  i = 0
+  array.each do |a|
+    if a == 0
+      i += 1
+    else
+      tmp_array[i] ||= []
+      tmp_array[i] << a
+    end
+  end
+  tmp_array.compact!
+  $count += tmp_array.size
+  tmp_array.each do |t|
+    tmp = t.map{|e2| e2 - 1}
+    foo(tmp)
   end
 end
 
-while !array.empty
-  new_array = []
-  array.each do |ar|
-    new_array << ar.map{|a| a - 1}
-    count += 1
-  end
-  array = new_array
-end
-
-require 'irb'
-binding.irb
+foo(hs)
+puts $count
