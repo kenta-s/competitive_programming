@@ -3,12 +3,26 @@ ss = gets.chars
 
 min = Float::INFINITY
 
+dp = {l_w: 0, r_w: ss.count{|s| s == "W"}, l_e: 0}
+dp[:r_e] = n - dp[:r_w]
+
 n.times do |i|
-  left = ss[0...i]
-  right = ss[i+1..-1]
-  l_num = left.nil? ? 0 : left.count{|s| s == "W"}
-  r_num = right.nil? ? 0 : right.count{|s| s == "E"}
-  min = [min, l_num + r_num].min
+  if ss[i] == "W"
+    dp[:r_w] -= 1
+  else
+    dp[:r_e] -= 1
+  end
+
+  if i > 0
+    if ss[i-1] == "W"
+      dp[:l_w] += 1
+    else
+      dp[:l_e] += 1
+    end
+  end
+
+  count = dp[:l_w] + dp[:r_e]
+  min = [min, count].min
 end
 
 puts min
