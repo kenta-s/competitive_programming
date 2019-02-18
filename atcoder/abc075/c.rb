@@ -1,6 +1,6 @@
 n,m = gets.split(" ").map(&:to_i)
 as = []
-n.times do
+m.times do
   as << gets.split(" ").map(&:to_i)
 end
 
@@ -16,7 +16,7 @@ def reset_g(graph, as, n)
   
   as.each do |a|
     graph[a[0]-1][a[1]-1] = 1
-    graph[a[1-1]][a[0]-1] = 1
+    graph[a[1]-1][a[0]-1] = 1
   end
   graph
 end
@@ -41,15 +41,14 @@ def dfs(current, tmp_g, visited)
 end
 
 ans = 0
-n.times do |i|
+m.times do |i|
   tmp_g = reset_g([], as, n)
   visited = reset_v(visited, n)
 
   a = as[i]
   tmp_g[a[0] - 1][a[1] -1] = 0
   tmp_g[a[1] - 1][a[0] -1] = 0
-  dfs(i+1, tmp_g, visited)
-  p "i: #{i}, v: #{visited}"
+  dfs(1, tmp_g, visited)
   flg = false
   n.times do |j|
     if !flg && !visited[j+1]
@@ -59,7 +58,4 @@ n.times do |i|
   end
 end
 
-
 puts ans
-require 'irb'
-binding.irb
